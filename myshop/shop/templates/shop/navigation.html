@@ -1,0 +1,426 @@
+<style>
+body {
+	margin: 0;
+	padding: 0;
+}
+* {
+	font-family: Arial, Helvetica, sansa-serif;
+}
+.nav-bar {
+  height: 70px;
+  background: #FFFFFF;
+  border: 1px solid #d8d8d8;
+}
+
+.brand {
+  position: absolute;
+  padding-left: 20px;
+  float: left;
+  line-height: 60px;
+  text-transform: uppercase;
+  font-size: 2.0em;
+}
+.brand a img {
+	max-height: 70px;
+}
+.brand a,
+.brand a:visited {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.nav-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+nav {
+  float: right;
+}
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+nav ul li {
+  float: left;
+  position: relative;
+}
+nav ul li a,
+nav ul li a:visited {
+  display: block;
+  padding: 0 20px;
+  line-height: 68px;
+  background: #FfFfFF;
+  color: black;
+  text-decoration: none;
+}
+nav ul li a:hover,
+nav ul li a:visited:hover {
+  background: #2ab1ce;
+  color: #ffffff;
+}
+nav ul li a:not(:only-child):after,
+nav ul li a:visited:not(:only-child):after {
+  padding-left: 4px;
+  content: ' ▾';
+}
+nav ul li ul li {
+  min-width: 190px;
+}
+nav ul li ul li a {
+  padding: 15px;
+  line-height: 20px;
+}
+
+.nav-dropdown {
+  position: absolute;
+  display: none;
+  z-index: 1;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+}
+.nav-mobile {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: #FfFfFF;
+  height: 67px;
+  width: 70px;
+}
+
+@media only screen and (max-width: 798px) {
+  .nav-mobile {
+    display: block;
+  }
+
+  nav {
+    width: 100%;
+    padding: 70px 0 15px;
+  }
+  nav ul {
+    display: none;
+  }
+  nav ul li {
+    float: none;
+  }
+  nav ul li a {
+    padding: 15px;
+    line-height: 20px;
+	padding-left: 25%;
+
+  }
+  nav ul li ul li a {
+    padding-left: 30%;
+  }
+
+  .nav-dropdown {
+    position: static;
+  }
+	.brand a img {
+		max-height: 60px;
+		margin-top: 5px;
+	}
+}
+@media screen and (min-width: 799px) {
+  .nav-list {
+    display: block !important;
+  }
+}
+#nav-toggle {
+  position: absolute;
+  left: 18px;
+  top: 28px;
+  cursor:
+  pointer;
+  padding: 10px 35px 16px 0px;
+}
+#nav-toggle span,
+#nav-toggle span:before,
+#nav-toggle span:after {
+  cursor: pointer;
+  border-radius: 1px;
+  height: 5px;
+  width: 35px;
+  background: black;
+  position: absolute;
+  display: block;
+  content: '';
+  transition: all 300ms ease-in-out;
+}
+#nav-toggle span:before {
+  top: -10px;
+}
+#nav-toggle span:after {
+  bottom: -10px;
+}
+#nav-toggle.active span {
+  background-color: transparent;
+}
+#nav-toggle.active span:before, #nav-toggle.active span:after {
+  top: 0;
+}
+#nav-toggle.active span:before {
+  transform: rotate(45deg);
+}
+#nav-toggle.active span:after {
+  transform: rotate(-45deg);
+}
+
+
+article {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.container1 {
+    background-image: url("{% static 'mysite/images/til.jpg' %}");
+    background-size: cover;
+    margin: auto;
+    padding: 10;
+    top: 50;
+    background-position: center center;
+    text-align: center;
+    text-color: white;
+    background-repeat: no repeat;
+    height: 400px;
+    opacity: 0.4;
+    overflow: hidden;
+    background: black;
+}
+.about p {
+    font-size: 130%;
+}
+.view {
+  height: 100%;
+}
+
+@media (max-width: 740px) {
+  html,
+  body,
+  header,
+  .view {
+    height: 100vh;
+  }
+}
+
+.top-nav-collapse {
+  background-color: #78909c !important;
+}
+
+.navbar:not(.top-nav-collapse) {
+  background: transparent !important;
+}
+
+@media (max-width: 991px) {
+  .navbar:not(.top-nav-collapse) {
+    background: #78909c !important;
+  }
+}
+
+
+
+h5 {
+  letter-spacing: 3px;
+  color:white;
+  font-size:200%;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  }
+  h2 {
+  font-size: 1em;
+  text-transform: capitalize;
+}
+
+/* 1. Fallback background-image, if linear-gradient isn't supported. */
+.container3 {
+  padding: 2em;
+  background-image: url('{% static 'mysite/images/til.jpg' %}');
+  /* 1 */
+  background-image:
+    linear-gradient(hsla(300, 80%, 20%, 0.7),90%,coral),
+    url('{% static 'mysite/images/til.jpg' %}');
+  background-position: center center;
+  background-size: cover;
+    height:600px;
+    background-repeat: no-repeat;
+}
+
+.content {
+  text-align: center;
+  color: white;
+}
+.hr-light {
+  border-top: 3px solid #fff;
+  width: 80px;
+}
+.footer {
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: #F0F8FF;
+   color: black;
+   text-align: center;
+}
+
+ul1 {
+    padding: 2px;
+    font-size: 35px;
+    width: 30px;
+    margin: 5px 2px;
+    border-radius: 50%;
+    list-style: none;
+    transition: 6%
+    line-height: 60%;
+    color: #000;
+}
+
+li1 {
+    list-style: none;
+    margin: 0 10px;
+}
+
+.fa {
+    color: #000;
+    transition: 6%;
+    line-height: 60px;
+}
+
+h2 {
+font-size: 150%;
+color: #000;
+}
+
+h1 {
+font-size: 200%;
+color: #000;
+.container2 ul li a  {
+    position: relative;
+    display: block;
+    width: 60px;
+    padding: 10;
+    height: 60px;
+    border-radius: 90%;
+    background-color:#fff;
+    text-align: center;
+    transition: 6%;
+    box-shadow: 0 5px 4px rgba(0,0,0,.5);
+}
+
+ li1:hover{
+    transform: translate(0,-10px);
+
+
+
+
+
+
+
+
+
+
+</style>
+    <style>
+        p {
+            font-size: 120%;
+    </style>
+
+
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script  src="function.js"></script>
+<script>/** code by webdevtrick ( https://webdevtrick.com ) **/
+$(document).on('ready', function() {
+
+  $('.field').on('focus', function() {
+    $('body').addClass('is-focus');
+  });
+
+  $('.field').on('blur', function() {
+    $('body').removeClass('is-focus is-type');
+  });
+
+  $('.field').on('keydown', function(event) {
+    $('body').addClass('is-type');
+    if((event.which === 8) && $(this).val() === '') {
+      $('body').removeClass('is-type');
+    }
+  });
+
+});
+</script>
+
+
+<body>
+
+<section class="nav-bar">
+    <div class="nav-container">
+        <div class="brand mt-2">
+            <a href="/" class="logo text-dark">Allshops</a>
+        </div>
+    </div>
+    <nav>
+        <div class="nav-mobile"><a id="nav-toggle" href="#!"><span></span></a></div>
+        <ul class="nav-list">
+            <li>
+                <a href="/">Home</a>
+            </li>
+            <li>
+                <a href="/about">About Me</a>
+            </li>
+            <li>
+                <a href="#">My Work</a>
+                <ul class="nav-dropdown">
+                    <li>
+                        <a href="/matlab">MATLAB Projects</a>
+                    </li>
+                    <li>
+                        <a href="/web">Web Development Projects</a>
+                    </li>
+                    <li>
+                        <a href="/proteus">Proteus projects</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                {% if request.user.is_authenticated %}
+
+                <a href="{% url "account:logout" %}">Logout</a>
+                {% else %}
+                <a href="{% url "account:login" %}">Log-in</a>
+                {% endif %}
+            </li>
+        </ul>
+    </nav>
+    </div>
+</section>
+</div>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script  src="function.js"></script>
+<script>/** code by webdevtrick ( https://webdevtrick.com ) **/
+(function($) {
+  $(function() {
+    $('nav ul li a:not(:only-child)').click(function(e) {
+      $(this).siblings('.nav-dropdown').toggle();
+      $('.dropdown').not($(this).siblings()).hide();
+      e.stopPropagation();
+    });
+    $('html').click(function() {
+      $('.nav-dropdown').hide();
+    });
+    $('#nav-toggle').click(function() {
+      $('nav ul').slideToggle();
+    });
+    $('#nav-toggle').on('click', function() {
+      this.classList.toggle('active');
+    });
+  });
+})(jQuery);
+// Animations init
+new WOW().init();
+
+</script>
+</body>

@@ -1,0 +1,239 @@
+{% extends "shop/base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+    Your shopping cart
+{% endblock %}
+
+{% block head %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://www.w3shools.com/w3css/4/w3.css">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="css/custom.css" >
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+<style>
+input[type=submit] {
+    width: 80px;
+    padding:  5px;
+    margin: 8px 0;
+    display: ;
+    border: none;
+    border-radius:;
+    box-sizing: border-box;
+    }
+
+form{
+    display:inline;
+
+}
+spa {
+    display: inline-block;
+    background-color: #d1d5db;
+    width: 70px;
+    height: 140px;
+    }
+
+.bat {
+    width: 520px;
+}
+.block {
+    width: 30px;
+    border: non;
+    height: 45px;
+    display: inline-block;
+    }
+.bt {
+    border: none;
+    padding: 20px;
+}
+
+.grid-container{
+    display: grid;
+    column-gap:50px;
+    background-color: #2196F3;
+    padding: 10px;
+    }
+
+.grid-item{
+    text-align: center;
+    }
+
+
+</style>
+
+
+{% endblock %}
+
+
+{% block content %}
+<body>
+<div class="container">
+<h1>Your shopping cart</h1>
+
+    <!-- Cart Start -->
+<div class="cart-page">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="cart-page-inner">
+                    <div class="table-responsive text-nowrap">
+                        <table class="table table-bordered">
+                            <thead class="text-muted">
+                            <tr>
+                                <th>Image</th>
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th>Unit price</th>
+                                <th>Total</th>
+                                <th>Remove</th>
+                            </tr>
+                            </thead>
+                            <tbody class="align-middle">
+                            {% for item in cart %}
+                            {% with product=item.product %}
+
+                            <tr>
+                                <td class="text-center">
+                                    <div class="img">
+                                        <a href="{{ product.get_absolute_url }}"><img  height="40" width="40" alt="Image" src="{% if product.image %}{{ product.image.url }} {% else %}{% static "img/no_image.png" %}{% endif %}"></a>
+                                    </div>
+                                </td>
+                                <td class="text-center">{{ product.name }}</td>
+                                <td>
+                                    <div class="qty text-center">
+                                        <form class="" action="{% url "cart:cart_add" product.id %}" method="post">
+                                                {{ item.update_quantity_form.quantity|as_crispy_field }}
+                                        {{ item.update_quantity_form.override }}
+                                        <button class="fa fa-refresh text-success btn btn-white" type="submit" value="Update" >
+                                            {% csrf_token %}</button>
+                                        </form>
+                                    </div>
+                                </td>
+                                <td class="text-center">&#8358;{{ item.price }}</td>
+                                <td class="text-center">&#8358;{{ item.total_price }}
+                                </td>
+                                <td class="text-center">
+                                    <form class="form-inline" action="{% url "cart:cart_remove" product.id %}" method="post">
+                                    <button class="bi bi-trash text-success btn btn-white" type="submit" value="Remove">
+                                        {% csrf_token %}</button>
+                                    </form>
+                                </td>
+                            </tr>
+
+                            {% endwith %}
+                            {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="cart-page-inner ">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="container border bg-light">
+                            <div class="coupon"><br>
+                                <p>Apply Coupon to get discount:</p>
+                                <form action="{% url "coupons:apply" %}" method="post">
+                                {{ coupon_apply_form|crispy }}
+                                <input class="btn btn-success rounded-pill" type="submit" value="Apply">
+                                {% csrf_token %}
+                                </form>
+                            </div></div><br>
+                        </div>
+                        <div class="col-md-12"><br>
+                            <div class="container border bg-light">
+                                <div class="cart-summary">
+                                    <div class="cart-content"><br>
+                                        <h1 class="text-center">Cart Summary</h1>
+                                        <div class="card-price-list d-flex justify-content-between align-items-center">
+                                            <div class="item">
+                                                <p class="text-muted">Sub Total</p>
+                                            </div>
+                                            <div class="price">
+                                                <p>&#8358;{{ cart.get_total_price }}</p>
+                                            </div>
+                                        </div>
+                                        {% if cart.coupon %}
+                                        <div class="card-price-list d-flex justify-content-between align-items-center">
+                                            <div class="item">
+                                                <p class="text-muted">Discount</p>
+                                            </div>
+                                            <div class="price">
+                                                <p>- &#8358;{{ cart.get_discount|floatformat:2 }}({{ cart.coupon.discount }}% off)</p>
+                                            </div>
+                                        </div>
+                                        {% endif %}
+                                        <div class="card-price-list d-flex justify-content-between align-items-center">
+                                            <div class="item">
+                                                <p class="text-muted">Shipping Cost</p>
+                                            </div>
+                                            <div class="price">
+                                                <p>&#8358;{{cart.get_shipping_cost}}.00</p>
+                                            </div>
+                                        </div>
+                                        <div class="card-price-list d-flex justify-content-between align-items-center">
+                                            <div class="item">
+                                                <p class="text-muted">Service fee</p>
+                                            </div>
+                                            <div class="price">
+                                                <p>&#8358;{{cart.service_fee}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="card-price-subtotal d-flex justify-content-between align-items-center">
+                                            <div class="total-text">
+                                                <p class="text-muted">Total Price</p>
+                                            </div>
+                                            <div class="total-price">
+                                                <p>&#8358;{{ cart.get_total_price_after_discount|floatformat:2 }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="cart-btn d-flex justify-content-between align-items-center">
+                                        <div class="item">
+                                            <p>
+                                                <a class="btn btn-outline-success rounded-pill" role="button" href="{% url "shop:product_list" %}" ><i class="text-success fa fa-chevron-left"></i>   Continue shopping</a>
+                                            </p>
+                                        </div>
+                                        <div class="price">
+                                            <p>
+                                                <a class="btn btn-success rounded-pill" role="button" href="{% url "orders:order_create" %}" >Checkout Now  <i class="text-light fa fa-chevron-right"></i></a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Cart End -->
+</div>
+</body>
+
+{% endblock %}
